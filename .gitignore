@@ -1,0 +1,7 @@
+node_modules/
+# Personal data and secrets live in ~/.pierog, never in the repo; these catch strays.
+.pierog/
+*.db
+*.db-*
+*.sql.bak
+.env*

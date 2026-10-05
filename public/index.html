@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kanban</title>
+  <meta name="theme-color" content="#f7f3ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161112" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Kanban">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon-180.png">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/vendor/sortable.min.js"></script>
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <header>
+    <nav class="tabs" aria-label="View">
+      <button data-view="week">This week</button>
+      <button data-view="board">Board</button>
+      <button data-view="stats">Stats</button>
+    </nav>
+    <div class="board-controls">
+      <select id="board-select" aria-label="Board"></select>
+      <button id="new-board" title="New board">+ Board</button>
+      <input id="filter" type="search" placeholder="Filter" aria-label="Filter tasks">
+    </div>
+    <button id="sync" title="Import upcoming Canvas assignments">Sync Canvas</button>
+  </header>
+
+  <main id="main"></main>
+  <div id="toast" role="status" hidden></div>
+
+  <dialog id="task-dialog">
+    <form method="dialog" id="task-form">
+      <input name="title" class="title-input" required aria-label="Title">
+      <div class="row">
+        <label>Column <select name="column"></select></label>
+        <label>Due <input type="date" name="due_date"></label>
+      </div>
+      <label>Repeat
+        <select name="repeat">
+          <option value="">Never</option>
+          <option value="day">Daily</option>
+          <option value="week">Weekly</option>
+          <option value="week2">Every 2 weeks</option>
+          <option value="month">Monthly</option>
+        </select>
+      </label>
+      <div id="weekdays" class="weekdays" hidden>
+        <label><input type="checkbox" name="weekday" value="0"><span>Su</span></label>
+        <label><input type="checkbox" name="weekday" value="1"><span>Mo</span></label>
+        <label><input type="checkbox" name="weekday" value="2"><span>Tu</span></label>
+        <label><input type="checkbox" name="weekday" value="3"><span>We</span></label>
+        <label><input type="checkbox" name="weekday" value="4"><span>Th</span></label>
+        <label><input type="checkbox" name="weekday" value="5"><span>Fr</span></label>
+        <label><input type="checkbox" name="weekday" value="6"><span>Sa</span></label>
+      </div>
+      <fieldset>
+        <legend>Color</legend>
+        <div class="swatches">
+          <label class="none" title="None"><input type="radio" name="color" value=""><span></span></label>
+          <label title="Wine" data-color="wine"><input type="radio" name="color" value="wine"><span></span></label>
+          <label title="Rust" data-color="rust"><input type="radio" name="color" value="rust"><span></span></label>
+          <label title="Ochre" data-color="ochre"><input type="radio" name="color" value="ochre"><span></span></label>
+          <label title="Olive" data-color="olive"><input type="radio" name="color" value="olive"><span></span></label>
+          <label title="Spruce" data-color="spruce"><input type="radio" name="color" value="spruce"><span></span></label>
+          <label title="Ink" data-color="ink"><input type="radio" name="color" value="ink"><span></span></label>
+          <label title="Plum" data-color="plum"><input type="radio" name="color" value="plum"><span></span></label>
+        </div>
+      </fieldset>
+      <label>Labels <input name="labels" placeholder="comma, separated" autocomplete="off"></label>
+      <label>Notes <textarea name="notes" rows="4"></textarea></label>
+      <div id="links"></div>
+      <fieldset>
+        <legend>Subtasks</legend>
+        <ul id="subtasks"></ul>
+        <input id="new-subtask" placeholder="Add subtask and press Enter" autocomplete="off">
+      </fieldset>
+      <footer>
+        <button type="button" id="delete-task" class="danger">Delete</button>
+        <span class="spacer"></span>
+        <button value="cancel" formnovalidate>Cancel</button>
+        <button value="save" class="primary">Save</button>
+      </footer>
+    </form>
+  </dialog>
+</body>
+</html>

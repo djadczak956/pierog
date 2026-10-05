@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Instructure//Canvas//EN
+BEGIN:VEVENT
+DTSTART:20261010T035900Z
+SUMMARY:HW 4: Backprop\, by hand [DS 541 Deep Learning]
+UID:event-assignment-1001
+URL;VALUE=URI:https://canvas.example.edu/courses/1/assignments/1001
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261015
+SUMMARY:Project proposal with a very long title that Canvas folds onto 
+ a second line [CS 4342 Machine Learning]
+UID:event-assignment-1002
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260920T035900Z
+SUMMARY:Old HW [DS 541 Deep Learning]
+UID:event-assignment-999
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261006T140000Z
+SUMMARY:Lecture [DS 541 Deep Learning]
+UID:event-calendar-event-55
+END:VEVENT
+END:VCALENDAR
