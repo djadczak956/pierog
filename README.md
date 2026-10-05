@@ -7,11 +7,22 @@ A small kanban board that runs on your own machine. Type `pierog`, and it opens 
 - Canvas LMS sync: imports upcoming assignments from your Canvas calendar feed
 - An [MCP](https://modelcontextprotocol.io) server, so Claude (or any MCP client) can read and edit the board
 
+![The board view](docs/board.png)
+
+<details>
+<summary>Stats view (dark mode)</summary>
+
+![Stats: finished per week, on-time rate, streaks, open workload](docs/stats.png)
+
+</details>
+
 Everything is stored in one SQLite file in `~/.pierog`. Nothing leaves your machine except the Canvas feed request.
 
 ## Requirements
 
 Node.js 26 or newer. No database or build step: Node runs the TypeScript directly and has SQLite built in.
+
+Tested on macOS. Linux should work; Windows is untested. On macOS, `pierog set-canvas` reads the clipboard; elsewhere, pipe the link in.
 
 ## Install
 
@@ -78,7 +89,16 @@ The server listens on `127.0.0.1` only and has no login. It rejects requests who
 
 ```sh
 npm start         # run the server in the foreground
+npm test          # unit + end-to-end tests (throwaway data dir, never touches ~/.pierog)
 npm run check     # typecheck
 ```
 
 Schema changes go in `migrations/NNNN_name.sql`; they're applied in order on startup.
+
+## Credits
+
+Drag and drop by [SortableJS](https://github.com/SortableJS/Sortable) (MIT), bundled in `public/vendor/`.
+
+## License
+
+[MIT](LICENSE)

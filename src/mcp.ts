@@ -9,7 +9,7 @@ const ref = (what: string) => z.string().describe(`${what} id or name (case-inse
 
 export function createServer(env: Env) {
   const { DB } = env;
-  const server = new McpServer({ name: "kanban", version: "1.0.0" });
+  const server = new McpServer({ name: "pierog", version: "1.0.0" });
 
   function tool<S extends z.ZodObject>(
     name: string,

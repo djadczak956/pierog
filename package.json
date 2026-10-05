@@ -4,7 +4,8 @@
   "description": "A local kanban board with Canvas calendar sync and an MCP server for Claude",
   "scripts": {
     "start": "node src/server.ts",
-    "check": "tsc"
+    "check": "tsc",
+    "test": "node --test \"test/*.test.ts\""
   },
   "type": "module",
   "devDependencies": {
