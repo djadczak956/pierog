@@ -16,7 +16,7 @@ Node.js 26 or newer. No database or build step: Node runs the TypeScript directl
 ## Install
 
 ```sh
-git clone https://github.com/<you>/pierog.git
+git clone https://github.com/djadczak956/pierog.git
 cd pierog
 npm install
 npm link          # puts the `pierog` command on your PATH
