@@ -639,6 +639,27 @@ $("#delete-task").addEventListener(
   }),
 );
 
+// Countdown view
+
+const DEADLINE = "2027-03-25";
+
+// Counts today and the deadline itself; holidays aren't excluded yet.
+function workdaysUntil(from, to) {
+  let n = 0;
+  for (let d = from; d <= to; d = addDays(d, 1)) {
+    const wd = new Date(`${d}T12:00`).getDay();
+    if (wd !== 0 && wd !== 6) n++;
+  }
+  return n;
+}
+
+function renderCountdown() {
+  const n = workdaysUntil(today(), DEADLINE);
+  $("#main").replaceChildren(
+    el("div", { class: "stats" }, el("div", { class: "tiles" }, tile(`Workdays until ${fmtDate(DEADLINE)}, 2027`, String(n), "Mon–Fri, counting today; holidays not excluded"))),
+  );
+}
+
 // Shell
 
 async function refresh() {
@@ -649,6 +670,7 @@ async function refresh() {
   );
   if (state.view === "week") return renderWeek();
   if (state.view === "stats") return renderStats();
+  if (state.view === "countdown") return renderCountdown();
 
   state.boards = await api("GET", "/boards");
   const wanted = state.board?.id ?? store.get("board");
